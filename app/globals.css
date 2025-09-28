@@ -6,10 +6,64 @@
 }
 
 @theme inline {
+  /* === Brand Colors === */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-brand-50: #fefefe; /* very light */
+  --color-brand-100: #e7edfc;
+  --color-brand-200: #d0daf9;
+  --color-brand-300: #adbae8; /* light */
+  --color-brand-400: #6991f5;
+  --color-brand-500: #4568fa; /* primary */
+  --color-brand-600: #3652c8;
+  --color-brand-700: #273d96;
+  --color-brand-800: #1a2964;
+  --color-brand-900: #101835;
+
+  --color-accent-500: #248ffb; /* bright accent */
+  --color-purple-500: #8940e3; /* purple accent */
+
+  /* === Gradient🌈Tokens === */
+  --gradient-brand: linear-gradient(to right, var(--color-brand-500), var(--color-purple-500));
+  --gradient-accent: linear-gradient(to right, var(--color-accent-500), var(--color-brand-500));
+  --gradient-light: linear-gradient(to right, var(--color-brand-100), var(--color-brand-300));
+  --gradient-dark: linear-gradient(to right, var(--color-brand-700), var(--color-brand-900));
+}
+
+/* === Background Gradients === */
+@utility bg-gradient-brand {
+  background-image: var(--gradient-brand);
+}
+
+@utility bg-gradient-accent {
+  background-image: var(--gradient-accent);
+}
+
+@utility bg-gradient-light {
+  background-image: var(--gradient-light);
+}
+
+@utility bg-gradient-dark {
+  background-image: var(--gradient-dark);
+}
+
+/* === Text Gradients === */
+@utility text-gradient-brand {
+  @apply bg-gradient-brand bg-clip-text text-transparent;
+}
+
+@utility text-gradient-accent {
+  @apply bg-gradient-accent bg-clip-text text-transparent;
+}
+
+@utility text-gradient-light {
+  @apply bg-gradient-light bg-clip-text text-transparent;
+}
+
+@utility text-gradient-dark {
+  @apply bg-gradient-dark bg-clip-text text-transparent;
 }
 
 @media (prefers-color-scheme: dark) {
