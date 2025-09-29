@@ -1,14 +1,5 @@
-import { signOut } from '@/auth';
+import AuthButton from './auth-button';
 
 export default function SignOut() {
-  return (
-    <form
-      action={async () => {
-        'use server';
-        await signOut({ redirectTo: '/' });
-      }}
-    >
-      <button type="submit">Sign-Out</button>
-    </form>
-  );
+  return <AuthButton mode="sign-out" label="Sign-Out" redirectTo="/" />;
 }
