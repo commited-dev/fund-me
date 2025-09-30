@@ -1,0 +1,7 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+  // If you have the Stylelint extension installed, lint CSS via Stylelint instead of the built-in validator
+  "stylelint.validate": ["css", "postcss"]
+}
