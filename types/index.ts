@@ -11,4 +11,3 @@ export type StartupCardType = {
     name: string;
   };
 };
-
