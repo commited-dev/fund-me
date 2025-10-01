@@ -7,16 +7,7 @@ import { Button } from './ui/button';
 import { StartupCardType } from '@/types';
 
 const StartupCard = ({ post }: { post: StartupCardType }) => {
-  const {
-    _createdAt,
-    views,
-    author: { _id: authorId, name },
-    title,
-    category,
-    description,
-    _id,
-    image,
-  } = post;
+  const { _createdAt, views, author, title, category, description, _id, image } = post;
   const formatedDate = formatDate(_createdAt);
 
   return (
@@ -32,14 +23,14 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
 
       <div className="flex-between mt-5 gap-5">
         <div className="flex-1">
-          <Link href={`/users/${authorId}`}>
-            <p className="text-16-medium line-clamp-1">{name}</p>
+          <Link href={`/users/${author?._id}`}>
+            <p className="text-16-medium line-clamp-1">{author?.name}</p>
           </Link>
           <Link href={`/startup/${_id}`}>
             <h3 className="text-26-semibold line-clamp-1">{title}</h3>
           </Link>
         </div>
-        <Link href={`/user/${authorId}`}>
+        <Link href={`/user/${author?._id}`}>
           <Image
             src="https://placehold.co/48x48"
             alt="placeholder"
@@ -54,8 +45,8 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
         <p className="startup-card_desc">{description}</p>
 
         <Image
-          src={image}
-          alt={description}
+          src={image ? image : ''}
+          alt={description ? description : ''}
           width={1200}
           height={630}
           className="startup-card_img"
@@ -63,7 +54,7 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
       </Link>
 
       <div className="flex-between gap-3 mt-5">
-        <Link href={`/?query=${category && category.toLowerCase()}`}>
+        <Link href={`/?query=${category?.toLowerCase()}`}>
           <p className="text-16-medium">{category}</p>
         </Link>
         <Button className="startup-card_btn" asChild>
