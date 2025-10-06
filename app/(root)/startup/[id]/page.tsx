@@ -6,6 +6,9 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import markdownit from 'markdown-it';
+import { Suspense } from 'react';
+import { Skeleton } from '@/components/ui/skeleton';
+import View from '@/components/ view';
 const md = markdownit();
 
 const DetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
@@ -62,6 +65,12 @@ const DetailsPage = async ({ params }: { params: Promise<{ id: string }> }) => {
             <p className="no-result">No details provided</p>
           )}
         </div>
+
+        <hr className="divider" />
+
+        <Suspense fallback={<Skeleton className="view-skeleton" />}>
+          <View id={id} />
+        </Suspense>
       </section>
     </>
   );
