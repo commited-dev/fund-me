@@ -23,18 +23,24 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return session;
     },
 
-    async signIn({ user, profile }) {
-      const existingUser = await client.fetch(AUTHOR_BY_GOOGLE_ID_QUERY, { id: profile?.id });
+    async signIn({
+      user: { name, email, image },
+      profile: { id, login, bio },
+    }: {
+      user: { name: string; email: string; image: string };
+      profile: { id: string; login: string; bio: string };
+    }) {
+      const existingUser = await client.fetch(AUTHOR_BY_GOOGLE_ID_QUERY, { id: id });
 
       if (!existingUser) {
         await writeClient.create({
           _type: 'author',
-          id: profile?.id,
-          name: user?.name,
-          username: profile?.login,
-          email: user?.email,
-          image: user?.image,
-          bio: profile?.bio || '',
+          id: id,
+          name: name,
+          username: login,
+          email: email,
+          image: image,
+          bio: bio || '',
         });
       }
 
